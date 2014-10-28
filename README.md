@@ -1,7 +1,7 @@
 Skinny ORM in Play application
 =================================
 
-This is a sample example to show how to use Skinny ORM in Play apps.
+This is an example app to show you how to use Skinny ORM in Play apps.
 
 ### Play Framework
 
