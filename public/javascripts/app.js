@@ -10,7 +10,7 @@ app.controller("MainController", function($scope, $http, $window) {
     });
   };
 
-  $scope.post = function(tweet) {
+  $scope.postTweet = function(tweet) {
     $http.post('/tweets', tweet).success(function(data) {
       $scope.errors = [];
       $scope.tweet.text = null;
