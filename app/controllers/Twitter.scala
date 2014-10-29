@@ -48,4 +48,9 @@ object Twitter extends Controller with JsonReadWrites {
     )
   }
 
+  def deleteTweet(tweetId: Long) = Action {
+    Tweet.deleteById(tweetId)
+    Ok
+  }
+
 }

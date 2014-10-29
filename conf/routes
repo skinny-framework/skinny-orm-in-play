@@ -6,6 +6,7 @@
 GET     /                      controllers.Twitter.index
 GET     /tweets                controllers.Twitter.showTimeline
 POST    /tweets                controllers.Twitter.postTweet
+DELETE  /tweets/:tweetId       controllers.Twitter.deleteTweet(tweetId: Long)
 GET     /users/:userId/tweets  controllers.Twitter.showUserTimeline(userId: Long)
 
 # Map static resources from the /public folder to the /assets URL path

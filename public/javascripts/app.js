@@ -1,7 +1,9 @@
 var app = angular.module('twitter', []);
 
-app.controller("MainController", function($scope, $http) {
+app.controller("MainController", function($scope, $http, $window) {
+
   $scope.tweet = {userName: 'Kaz'};
+
   $scope.refreshTimeline = function() {
     $http.get('/tweets').success(function (tweets) {
       $scope.tweets = tweets;
@@ -25,7 +27,15 @@ app.controller("MainController", function($scope, $http) {
       $scope.userInModal.tweets = tweets;
       $('#myModal').modal('toggle');
     });
-    return false;
   };
+
+  $scope.deleteTweet = function(tweet) {
+    $http.delete('/tweets/' + tweet.id).success(function(res) {
+      $scope.refreshTimeline();
+    }).error(function(res) {
+      $window.alert('Failed to delete tweet!');
+      $scope.refreshTimeline();
+    });
+  }
 });
 

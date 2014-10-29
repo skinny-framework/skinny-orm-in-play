@@ -21,7 +21,10 @@
 <hr/>
 <ol class="breadcrumb" ng-repeat="tweet in tweets">
   <li>「{{tweet.text}}」 by <a ng-click="showTweets(tweet.user)">@@{{tweet.user.name}}</a></li>
-  <div class="pull-right">{{tweet.createdAt}}</div>
+  <div class="pull-right">
+    {{tweet.createdAt}}
+    <span ng-click="deleteTweet(tweet)" class="glyphicon glyphicon-trash"></span>
+  </div>
 </ol>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
