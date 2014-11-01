@@ -38,6 +38,7 @@ If you need db migration, use Play's evolution or [@tototoshi's flyway plugin](h
 ### How to run?
 
 ```sh
+#brew install npm
 npm install
 bower install
 ./gulp build
