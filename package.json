@@ -1,0 +1,30 @@
+{
+  "name": "skinny-orm-in-play",
+  "version": "1.0.0",
+  "description": "Skinny ORM example with Play",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skinny-framework/skinny-orm-in-play.git"
+  },
+  "keywords": [
+    "Scala"
+  ],
+  "author": "skinny-framework.org",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skinny-framework/skinny-orm-in-play/issues"
+  },
+  "homepage": "https://github.com/skinny-framework/skinny-orm-in-play",
+  "devDependencies": {
+    "gulp": "^3.8.9",
+    "gulp-6to5": "^1.0.1",
+    "gulp-concat": "^2.4.1",
+    "gulp-jshint": "^1.8.6",
+    "gulp-uglify": "^1.0.1",
+    "gulp-watch": "^1.1.0",
+    "jshint-stylish": "^1.0.0"
+  }
+}

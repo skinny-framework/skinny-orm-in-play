@@ -9,7 +9,7 @@ trait JsonReadWrites {
     def writes(user: User) = Json.obj(
       "id" -> user.id,
       "name" -> user.name,
-      "createdAt" -> user.createdAt.toString("yyyy/MM/dd HH:mm:ss")
+      "createdAt" -> user.createdAt
     )
   }
 
@@ -18,7 +18,7 @@ trait JsonReadWrites {
       "id" -> tweet.id,
       "text" -> tweet.text,
       "user" -> tweet.user,
-      "createdAt" -> tweet.createdAt.toString("yyyy/MM/dd HH:mm:ss")
+      "createdAt" -> tweet.createdAt
     )
   }
 

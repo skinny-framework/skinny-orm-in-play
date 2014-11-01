@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
   .settings(
     name := "skinny-orm-in-play",
     version := "1.0-SNAPSHOT",
-    scalaVersion := "2.11.2",
+    scalaVersion := "2.11.4",
     libraryDependencies ++= Seq(
       filters,
       jdbc,

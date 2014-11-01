@@ -35,6 +35,16 @@ See http://scalikejdbc.org/documentation/playframework-support.html
 
 If you need db migration, use Play's evolution or [@tototoshi's flyway plugin](https://github.com/tototoshi/play-flyway).
 
+### How to run?
+
+```sh
+npm install
+bower install
+./gulp build
+brew install sbt
+sbt run
+```
+
 ### Examples
 
 Here are some example DAOs.

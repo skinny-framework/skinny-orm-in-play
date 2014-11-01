@@ -1,41 +1,73 @@
-var app = angular.module('twitter', []);
+"use strict";
+((function() {
+  'use strict';
 
-app.controller("MainController", function($scope, $http, $window) {
+  var MainController = function() {
+    var MainController = function MainController($http, $window) {
+      this.tweet = {userName: 'Kaz'};
+      this.$http = $http;
+      this.$window = $window;
+    };
 
-  $scope.tweet = {userName: 'Kaz'};
+    Object.defineProperties(MainController.prototype, {
+      refreshTimeline: {
+        writable: true,
 
-  $scope.refreshTimeline = function() {
-    $http.get('/tweets').success(function (tweets) {
-      $scope.tweets = tweets;
+        value: function() {
+          var _this = this;
+          this.$http.get('/tweets').success(function(tweets) {
+            _this.tweets = tweets;
+          });
+        }
+      },
+
+      postTweet: {
+        writable: true,
+
+        value: function(tweet) {
+          var _this2 = this;
+          this.$http.post('/tweets', tweet).success(function(data) {
+            _this2.errors = [];
+            _this2.tweet.text = null;
+            _this2.refreshTimeline();
+          }).error(function(errors) {
+            _this2.errors = errors;
+            _this2.refreshTimeline();
+          });
+        }
+      },
+
+      showTweets: {
+        writable: true,
+
+        value: function(user) {
+          var _this3 = this;
+          this.$http.get('/users/' + user.id + '/tweets').success(function(tweets) {
+            _this3.userInModal = user;
+            _this3.userInModal.tweets = tweets;
+            $('#myModal').modal('toggle');
+          });
+        }
+      },
+
+      deleteTweet: {
+        writable: true,
+
+        value: function(tweet) {
+          var _this4 = this;
+          this.$http.delete('/tweets/' + tweet.id).success(function(res) {
+            _this4.refreshTimeline();
+          }).error(function(res) {
+            _this4.$window.alert('Failed to delete tweet!');
+            _this4.refreshTimeline();
+          });
+        }
+      }
     });
-  };
 
-  $scope.postTweet = function(tweet) {
-    $http.post('/tweets', tweet).success(function(data) {
-      $scope.errors = [];
-      $scope.tweet.text = null;
-      $scope.refreshTimeline();
-    }).error(function (errors) {
-      $scope.errors = errors;
-      $scope.refreshTimeline();
-    });
-  };
+    return MainController;
+  }();
 
-  $scope.showTweets = function(user) {
-    $http.get('/users/' + user.id + '/tweets').success(function(tweets) {
-      $scope.userInModal = user;
-      $scope.userInModal.tweets = tweets;
-      $('#myModal').modal('toggle');
-    });
-  };
-
-  $scope.deleteTweet = function(tweet) {
-    $http.delete('/tweets/' + tweet.id).success(function(res) {
-      $scope.refreshTimeline();
-    }).error(function(res) {
-      $window.alert('Failed to delete tweet!');
-      $scope.refreshTimeline();
-    });
-  }
-});
+  angular.module('twitter', []).controller("MainController", MainController);
+}))();
 

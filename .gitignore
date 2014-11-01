@@ -62,3 +62,10 @@ sbt
 
 logs
 sandbox/db
+
+public/javascripts/
+public/stylesheets/
+public/fonts/
+node_modules/
+bower_components/
+

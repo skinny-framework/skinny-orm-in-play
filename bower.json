@@ -1,0 +1,24 @@
+{
+  "name": "skinny-orm-in-play",
+  "version": "1.0-SNAPSHOT",
+  "homepage": "http://skinny-framework.org/",
+  "authors": [
+    "skinny-framework.org"
+  ],
+  "description": "Skinny ORM example with Play",
+  "keywords": [
+    "Scala"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap": "~3.3.0",
+    "angularjs": "~1.3.1"
+  }
+}
