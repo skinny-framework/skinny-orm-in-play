@@ -46,6 +46,15 @@ brew install sbt
 sbt run
 ```
 
+### Heroku deployment
+
+```sh
+heroku login
+heroku git:remote -a {heroku app name}
+heroku config:set BUILDPACK_URL=https://github.com/heroku/heroku-buildpack-scala
+git push heroku master
+```
+
 ### Examples
 
 Here are some example DAOs.
