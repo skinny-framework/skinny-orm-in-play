@@ -4,7 +4,7 @@ import TwitterController from './TwitterController';
 var services = angular.module('twitter.services', [])
   .service('TweetService', TweetService);
 
-var controllers = angular.module('twitter.controllers', [])
+var controllers = angular.module('twitter.controllers', [services.name])
   .controller('TwitterController', TwitterController);
 
 export default angular.module('twitter', [

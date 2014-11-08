@@ -66,3 +66,4 @@ sandbox/db
 node_modules/
 bower_components/
 
+front/test/build

@@ -21,12 +21,16 @@
   "devDependencies": {
     "6to5-browserify": "^1.0.0",
     "browserify": "^6.2.0",
+    "chai": "^1.9.2",
     "gulp": "^3.8.9",
     "gulp-concat": "^2.4.1",
     "gulp-jshint": "^1.9.0",
+    "gulp-karma": "0.0.4",
     "gulp-uglify": "^1.0.1",
     "gulp-watch": "^1.1.0",
     "jshint-stylish": "^1.0.0",
+    "karma-chrome-launcher": "^0.1.5",
+    "karma-jasmine": "^0.2.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0"
   }

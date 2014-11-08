@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     browserify = require("browserify"),
     vinylSourceStream = require('vinyl-source-stream'),
     vinylBuffer = require('vinyl-buffer'),
-    to5Browserify = require("6to5-browserify");
+    to5Browserify = require("6to5-browserify"),
+    karma = require('karma').server;
 
 var srcAppJs = './front/src/**/*.js';
 
@@ -16,7 +17,7 @@ gulp.task('js:lint', function() {
     .pipe(jshint.reporter('default'));
 });
 
-gulp.task('js:build', function() {
+function jsBuild(dest) {
   var bundler = browserify({ 
     entries: ['./front/src/app.js'],
     debug: true 
@@ -27,7 +28,19 @@ gulp.task('js:build', function() {
     .on("error", function (err) { console.log("Error : " + err.message); })
     .pipe(vinylSourceStream("app.js"))
     .pipe(vinylBuffer())
-    .pipe(gulp.dest('public/javascripts/'));
+    .pipe(gulp.dest(dest));
+}
+
+gulp.task('js:build', function() { 
+  return jsBuild('public/javascripts/') 
+  });
+
+gulp.task('js:test', function (done) {
+  jsBuild('front/test/build/');
+  karma.start({
+    configFile: __dirname + '/front/test/karma.conf.js',
+    singleRun: true
+  }, done);
 });
 
 gulp.task('assets:js', function() {
@@ -56,6 +69,7 @@ gulp.task('assets:fonts', function() {
 });
 gulp.task('js', ['js:lint', 'js:build']);
 gulp.task('build', ['assets:js', 'assets:css', 'assets:fonts', 'js']);
+gulp.task('test', ['js:test']);
 
 gulp.task('watch', function() {
   watching = true;
