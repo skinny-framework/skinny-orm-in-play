@@ -44,12 +44,17 @@ If you need db migration, use Play's evolution or [@tototoshi's flyway plugin](h
 ### How to run?
 
 ```sh
-#brew install npm
+# brew install npm
 npm install
+# npm install -g bower
 bower install
+
 ./gulp build
-brew install sbt
+
+# brew install sbt
 sbt run
+
+# access localhost:9000 from your browser
 ```
 
 ### Heroku deployment

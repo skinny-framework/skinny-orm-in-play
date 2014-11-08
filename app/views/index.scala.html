@@ -1,29 +1,29 @@
 @main("Twitter") {
-<div ng-app="twitter" ng-controller="MainController as main" ng-init="main.refreshTimeline()" class="container">
+<div ng-app="twitter" ng-controller="TwitterController as tw" ng-init="tw.refreshTimeline()" class="container" ng-cloak>
 
 <h1>Twitter</h1>
 <hr/>
 
 <form class="form-horizontal">
-  <div ng-class="main.errors.userName ? 'form-group has-error' : 'form-group'">
+  <div ng-class="tw.validationErrors.userName ? 'form-group has-error' : 'form-group'">
     <label class="control-label" for="userName">User Name:</label>
-    <input type="text" class="form-control" id="userName" ng-model="main.tweet.userName">
-    <span ng-if="main.errors.userName" class="control-label">{{main.errors.userName}}</span>
+    <input type="text" class="form-control" id="userName" ng-model="tw.newTweet.userName">
+    <span ng-if="tw.validationErrors.userName" class="control-label">{{tw.validationErrors.userName}}</span>
   </div>
-  <div ng-class="main.errors.text ? 'form-group has-error' : 'form-group'">
+  <div ng-class="tw.validationErrors.text ? 'form-group has-error' : 'form-group'">
     <label class="control-label" for="text">Tweet Text:</label>
-    <input type="text" class="form-control" id="text" ng-model="main.tweet.text">
-    <span ng-if="main.errors.text" class="control-label">{{main.errors.text}}</span>
+    <input type="text" class="form-control" id="text" ng-model="tw.newTweet.text">
+    <span ng-if="tw.validationErrors.text" class="control-label">{{tw.validationErrors.text}}</span>
   </div>
-  <button class="btn btn-primary" ng-click="main.postTweet(main.tweet)">Tweet</button>
+  <button class="btn btn-primary" ng-click="tw.postTweet(tw.newTweet)">Tweet</button>
 </form>
 
 <hr/>
-<ol class="breadcrumb" ng-repeat="tweet in main.tweets">
-  <li>「{{tweet.text}}」 by <a ng-click="main.showTweets(tweet.user)">@@{{tweet.user.name}}</a></li>
+<ol class="breadcrumb" ng-repeat="tweet in tw.tweets">
+  <li>「{{tweet.text}}」 by <a ng-click="tw.showTweetsForUser(tweet.user)">@@{{tweet.user.name}}</a></li>
   <div class="pull-right">
     {{tweet.createdAt | date:"yyyy/MM/dd HH:mm:ss"}}
-    <span ng-click="main.deleteTweet(tweet)" class="glyphicon glyphicon-trash"></span>
+    <span ng-click="tw.deleteTweet(tweet)" class="glyphicon glyphicon-trash"></span>
   </div>
 </ol>
 
@@ -35,9 +35,9 @@
         <h4 class="modal-title" id="myModalLabel">{{userInModal.name}}</h4>
       </div>
       <div class="modal-body">
-        <ol class="breadcrumb" ng-repeat="tweet in main.userInModal.tweets">
+        <ol class="breadcrumb" ng-repeat="tweet in tw.userInModal.tweets">
           <li>「{{tweet.text}}」</li>
-          <div class="pull-right">{{tweet.createdAt}}</div>
+          <div class="pull-right">{{tweet.createdAt | date:"yyyy/MM/dd HH:mm:ss"}}</div>
         </ol>
       </div>
     </div>

@@ -1,48 +1,14 @@
-(() => {
-  'use strict';
+import TweetService from './TweetService';
+import TwitterController from './TwitterController';
 
-  class MainController {
-    constructor($http, $window) {
-      this.tweet = {userName: 'Kaz'};
-      this.$http = $http;
-      this.$window = $window;
-    }
+var services = angular.module('twitter.services', [])
+  .service('TweetService', TweetService);
 
-    refreshTimeline() {
-      this.$http.get('/tweets').success((tweets) => {
-        this.tweets = tweets;
-      });
-    }
+var controllers = angular.module('twitter.controllers', [])
+  .controller('TwitterController', TwitterController);
 
-    postTweet(tweet) {
-      this.$http.post('/tweets', tweet).success((data) => {
-        this.errors = [];
-        this.tweet.text = null;
-        this.refreshTimeline();
-      }).error((errors) => {
-        this.errors = errors;
-        this.refreshTimeline();
-      });
-    }
-
-    showTweets(user) {
-      this.$http.get('/users/' + user.id + '/tweets').success((tweets) => {
-        this.userInModal = user;
-        this.userInModal.tweets = tweets;
-        $('#myModal').modal('toggle');
-      });
-    }
-
-    deleteTweet(tweet) {
-      this.$http.delete('/tweets/' + tweet.id).success((res) => {
-        this.refreshTimeline();
-      }).error((res) => {
-        this.$window.alert('Failed to delete tweet!');
-        this.refreshTimeline();
-      });
-    }
-  }
-
-  angular.module('twitter', []).controller("MainController", MainController);
-})();
+export default angular.module('twitter', [
+  services.name,
+  controllers.name
+]);
 

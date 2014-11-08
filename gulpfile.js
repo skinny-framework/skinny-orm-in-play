@@ -3,15 +3,30 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
-    es6to5 = require('gulp-6to5');
+    browserify = require("browserify"),
+    vinylSourceStream = require('vinyl-source-stream'),
+    vinylBuffer = require('vinyl-buffer'),
+    to5Browserify = require("6to5-browserify");
 
 var srcAppJs = './front/src/**/*.js';
 
-gulp.task('js', function() {
+gulp.task('js:lint', function() {
   return gulp.src(srcAppJs)
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(es6to5())
+    .pipe(jshint.reporter('default'));
+});
+
+gulp.task('js:build', function() {
+  var bundler = browserify({ 
+    entries: ['./front/src/app.js'],
+    debug: true 
+  });
+  return bundler
+    .transform(to5Browserify)
+    .bundle()
+    .on("error", function (err) { console.log("Error : " + err.message); })
+    .pipe(vinylSourceStream("app.js"))
+    .pipe(vinylBuffer())
     .pipe(gulp.dest('public/javascripts/'));
 });
 
@@ -39,6 +54,7 @@ gulp.task('assets:fonts', function() {
     ])
     .pipe(gulp.dest('public/fonts/'));
 });
+gulp.task('js', ['js:lint', 'js:build']);
 gulp.task('build', ['assets:js', 'assets:css', 'assets:fonts', 'js']);
 
 gulp.task('watch', function() {
