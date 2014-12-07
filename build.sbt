@@ -1,3 +1,5 @@
+lazy val skinnyVersion = "1.3.6"
+
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
   .settings(
     name := "skinny-orm-in-play",
@@ -14,4 +16,10 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
     )
   ).settings(scalariformSettings: _*)
 
-lazy val skinnyVersion = "1.3.5"
+lazy val task = (project in file("task"))
+  .settings(
+    scalaSource in Compile := baseDirectory.value,
+    libraryDependencies += "org.skinny-framework" %% "skinny-task" % skinnyVersion,
+    mainClass := Some("TaskRunnner")
+  )
+

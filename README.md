@@ -57,6 +57,12 @@ sbt run
 # access localhost:9000 from your browser
 ```
 
+### Model Generator
+
+```sh
+sbt "task/run generate:model ReTweet tweetId:Long userId:Long tweet:Option[Tweet] user:Option[User]"
+```
+
 ### Heroku deployment
 
 ```sh
