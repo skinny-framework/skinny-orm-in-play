@@ -28,7 +28,7 @@ http://skinny-framework.org/documentation/orm.html
 #### 1. Add skinny-orm to libraryDependenncies
 
 ```scala
-"org.skinny-framework" %% "skinny-orm" % "1.3.4"
+"org.skinny-framework" %% "skinny-orm" % "1.3.+"
 ```
 
 #### 2. Add ScalikeJDBC interagtion settings (Skinny ORM is built upon ScalikeJDBC)
@@ -59,9 +59,15 @@ sbt run
 
 ### Model Generator
 
+`task` sub project is ready. Try `sbt task/run generate:model {Entity} {attributes}`.
+
 ```sh
-sbt "task/run generate:model ReTweet tweetId:Long userId:Long tweet:Option[Tweet] user:Option[User]"
+sbt "task/run generate:model Follow followerUserId:Long followingUserId::Long follower:Option[User] following:Option[User]"
 ```
+
+- Option[{Entity}]: belongsTo association
+- Seq[{Entity}]: hasMany association
+- Seq[{Entity1}{Entity2}]: hasManyThrough association
 
 ### Heroku deployment
 
