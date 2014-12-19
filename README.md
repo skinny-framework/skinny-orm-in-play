@@ -62,7 +62,7 @@ sbt run
 `task` sub project is ready. Try `sbt task/run generate:model {Entity} {attributes}`.
 
 ```sh
-sbt "task/run model Follow followerUserId:Long followingUserId::Long follower:Option[User] following:Option[User]"
+sbt "task/run model Follow followerUserId:Long followingUserId:Long follower:Option[User] following:Option[User]"
 sbt "task/run reverse-model Follow"
 sbt "task/run reverse-model-all"
 ```
