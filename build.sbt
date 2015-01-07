@@ -1,4 +1,4 @@
-lazy val skinnyVersion = "1.3.9"
+lazy val skinnyVersion = "1.3.10"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala).settings(
   name := "skinny-orm-in-play",
