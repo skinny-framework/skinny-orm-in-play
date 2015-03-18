@@ -3,7 +3,7 @@ lazy val skinnyVersion = "1.3.+"
 lazy val root = (project in file(".")).enablePlugins(PlayScala).settings(
   name := "skinny-orm-in-play",
   version := "1.0-SNAPSHOT",
-  scalaVersion := "2.11.5",
+  scalaVersion := "2.11.6",
   resolvers += "sonatype releases" at "https://oss.sonatype.org/content/repositories/releases",
   libraryDependencies ++= Seq(
     filters,
