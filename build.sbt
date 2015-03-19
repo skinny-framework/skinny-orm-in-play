@@ -5,6 +5,8 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala).settings(
   version := "1.0-SNAPSHOT",
   scalaVersion := "2.11.6",
   resolvers += "sonatype releases" at "https://oss.sonatype.org/content/repositories/releases",
+  transitiveClassifiers in Global := Seq(Artifact.SourceClassifier),
+  incOptions := incOptions.value.withNameHashing(true),
   libraryDependencies ++= Seq(
     filters,
     jdbc,
