@@ -6,9 +6,11 @@ import play.api.data._
 import play.api.data.Forms._
 import play.api.mvc._
 import play.api.i18n.Messages
+import play.api.i18n.Messages.Implicits._
 import play.api.libs.json._
+import play.api.Play.current
 
-object Twitter extends Controller with JsonReadWrites {
+class Twitter extends Controller with JsonReadWrites {
 
   private[this] val JsonContentType = "application/json"
 
