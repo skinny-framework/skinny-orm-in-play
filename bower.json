@@ -18,8 +18,8 @@
     "tests"
   ],
   "devDependencies": {
-    "bootstrap": "~3.3.0",
-    "angularjs": "~1.3.2",
-    "angular-mocks": "~1.3.2"
+    "bootstrap": "~3.3.5",
+    "angularjs": "~1.4.8",
+    "angular-mocks": "~1.4.8"
   }
 }

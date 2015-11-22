@@ -14,16 +14,16 @@ class Twitter extends Controller with JsonReadWrites {
 
   private[this] val JsonContentType = "application/json"
 
-  def index = Action {
-    Ok(views.html.index())
-  }
+  def index = Action { Ok(views.html.index()) }
 
   def showTimeline = Action {
-    Ok(Json.toJson(Tweet.findRecent())).as(JsonContentType)
+    val tweets = Tweet.findRecent()
+    Ok(Json.toJson(tweets)).as(JsonContentType)
   }
 
   def showUserTimeline(userId: Long) = Action {
-    Ok(Json.toJson(Tweet.findRecentByUserId(userId))).as(JsonContentType)
+    val tweets = Tweet.findRecentByUserId(userId)
+    Ok(Json.toJson(tweets)).as(JsonContentType)
   }
 
   private[this] lazy val tweetForm = Form(
@@ -36,15 +36,16 @@ class Twitter extends Controller with JsonReadWrites {
   def postTweet = Action { implicit req =>
     tweetForm.bindFromRequest.fold(
       formWithErrors => {
-        val errors = formWithErrors.errors.map { e =>
-          e.key -> Messages(e.message, e.args: _*)
-        }.toMap
+        val errors = formWithErrors.errors.map { e => e.key -> Messages(e.message, e.args: _*) }.toMap
         BadRequest(Json.toJson(errors)).as(JsonContentType)
       },
       form => {
-        val userId = User.findByName(form.userName).map(_.id)
-          .getOrElse { User.create(form.userName) }
-        Tweet.create(userId, form.text)
+        User.findByName(form.userName) match {
+          case Some(user) => Tweet.create(user.id, form.text)
+          case _ =>
+            val userId = User.create(form.userName)
+            Tweet.create(userId, form.text)
+        }
         Ok
       }
     )

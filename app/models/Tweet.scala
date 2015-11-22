@@ -15,9 +15,7 @@ object Tweet extends SkinnyCRUDMapper[Tweet] {
   override lazy val defaultAlias = createAlias("tw")
   private[this] lazy val t = defaultAlias
 
-  override def extract(rs: WrappedResultSet, rn: ResultName[Tweet]) = {
-    autoConstruct(rs, rn, "user")
-  }
+  override def extract(rs: WrappedResultSet, rn: ResultName[Tweet]) = autoConstruct(rs, rn, "user")
 
   lazy val userRef = belongsTo[User](User, (t, user) => t.copy(user = user))
 
