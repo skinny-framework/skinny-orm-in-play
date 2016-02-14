@@ -9,7 +9,8 @@ case class User(
   name: String,
   description: Option[String],
   createdAt: DateTime,
-  tweets: Seq[Tweet] = Nil)
+  tweets: Seq[Tweet] = Nil
+)
 
 object User extends SkinnyCRUDMapper[User] {
   override lazy val defaultAlias = createAlias("u")
