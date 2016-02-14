@@ -11,4 +11,3 @@ create table tweet (
   text text not null default '',
   created_at timestamp not null default current_timestamp
 );
-

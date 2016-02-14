@@ -16,9 +16,7 @@ object User extends SkinnyCRUDMapper[User] {
   override lazy val defaultAlias = createAlias("u")
   private[this] lazy val u = defaultAlias
 
-  override def extract(rs: WrappedResultSet, rn: ResultName[User]) = {
-    autoConstruct(rs, rn, "tweets")
-  }
+  override def extract(rs: WrappedResultSet, rn: ResultName[User]) = autoConstruct(rs, rn, "tweets")
 
   lazy val tweetsRef = hasMany[Tweet](
     many = Tweet -> Tweet.defaultAlias,
@@ -26,12 +24,8 @@ object User extends SkinnyCRUDMapper[User] {
     merge = (u, ts) => u.copy(tweets = ts)
   )
 
-  def create(name: String) = {
-    createWithNamedValues(column.name -> name)
-  }
+  def create(name: String): Long = createWithNamedValues(column.name -> name)
 
-  def findByName(name: String): Option[User] = {
-    where(sqls.eq(u.name, name)).apply().headOption
-  }
+  def findByName(name: String): Option[User] = where(sqls.eq(u.name, name)).apply().headOption
+
 }
-

@@ -20,7 +20,7 @@ object Tweet extends SkinnyCRUDMapper[Tweet] {
 
   lazy val userRef = belongsTo[User](User, (t, user) => t.copy(user = user))
 
-  def create(userId: Long, text: String) = {
+  def create(userId: Long, text: String): Long = {
     createWithNamedValues(
       column.userId -> userId,
       column.text -> text
@@ -42,4 +42,3 @@ object Tweet extends SkinnyCRUDMapper[Tweet] {
   }
 
 }
-

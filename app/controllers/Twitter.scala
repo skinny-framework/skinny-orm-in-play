@@ -12,7 +12,7 @@ import play.api.Play.current
 
 class Twitter extends Controller with JsonReadWrites {
 
-  private[this] val JsonContentType = "application/json"
+  private[this] val JsonContentType = "application/json; charset=utf-8"
 
   def index = Action { Ok(views.html.index()) }
 
