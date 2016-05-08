@@ -1,16 +1,16 @@
 package controllers
 
+import javax.inject.Inject
 import models._
 import play.api._
 import play.api.data._
 import play.api.data.Forms._
 import play.api.mvc._
-import play.api.i18n.Messages
-import play.api.i18n.Messages.Implicits._
+import play.api.i18n.MessagesApi
 import play.api.libs.json._
 import play.api.Play.current
 
-class Twitter extends Controller with JsonReadWrites {
+class Twitter @Inject() (messages: MessagesApi) extends Controller with JsonReadWrites {
 
   private[this] val JsonContentType = "application/json; charset=utf-8"
 
@@ -36,7 +36,7 @@ class Twitter extends Controller with JsonReadWrites {
   def postTweet = Action { implicit req =>
     tweetForm.bindFromRequest.fold(
       formWithErrors => {
-        val errors = formWithErrors.errors.map { e => e.key -> Messages(e.message, e.args: _*) }.toMap
+        val errors = formWithErrors.errors.map { e => e.key -> messages.preferred(req).apply(e.message, e.args: _*) }.toMap
         BadRequest(Json.toJson(errors)).as(JsonContentType)
       },
       form => {

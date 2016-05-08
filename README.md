@@ -28,7 +28,7 @@ http://skinny-framework.org/documentation/orm.html
 #### 1. Add skinny-orm to libraryDependenncies
 
 ```scala
-"org.skinny-framework" %% "skinny-orm" % "2.0.+"
+"org.skinny-framework" %% "skinny-orm" % "2.1.+"
 ```
 
 #### 2. Add ScalikeJDBC interagtion settings (Skinny ORM is built upon ScalikeJDBC)
