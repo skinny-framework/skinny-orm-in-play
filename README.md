@@ -7,11 +7,11 @@ This is an example app to show you how to use Skinny ORM in Play apps.
 
 https://skinny-orm-in-play.herokuapp.com/
 
-### Typesafe Activator Template
+### Lightbend Activator Template
 
 Play Framework with Skinny ORM
 
-http://typesafe.com/activator/template/skinny-orm-in-play
+http://www.lightbend.com/activator/template/skinny-orm-in-play
 
 ### Play Framework
 
