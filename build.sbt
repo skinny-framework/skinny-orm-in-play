@@ -1,15 +1,15 @@
-lazy val skinnyVersion = "2.2.0"
-lazy val h2Version = "1.4.192"
+lazy val skinnyVersion = "2.3.7"
+lazy val h2Version = "1.4.195"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala).settings(
   name := "skinny-orm-in-play",
   version := "1.0-SNAPSHOT",
-  scalaVersion := "2.11.8",
+  scalaVersion := "2.11.11",
   routesGenerator := InjectedRoutesGenerator,
   transitiveClassifiers in Global := Seq(Artifact.SourceClassifier),
   incOptions := incOptions.value.withNameHashing(true),
   dependencyOverrides ++= Set(
-    "org.slf4j"      % "slf4j-api" % "1.7.21"
+    "org.slf4j"      % "slf4j-api" % "1.7.25"
   ),
   libraryDependencies ++= Seq(
     filters,
