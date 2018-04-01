@@ -9,8 +9,7 @@ case class User(
   name: String,
   description: Option[String],
   createdAt: DateTime,
-  tweets: Seq[Tweet] = Nil
-)
+  tweets: Seq[Tweet] = Nil)
 
 object User extends SkinnyCRUDMapper[User] {
   override lazy val defaultAlias = createAlias("u")
@@ -21,8 +20,7 @@ object User extends SkinnyCRUDMapper[User] {
   lazy val tweetsRef = hasMany[Tweet](
     many = Tweet -> Tweet.defaultAlias,
     on = (u, t) => sqls.eq(u.id, t.userId),
-    merge = (u, ts) => u.copy(tweets = ts)
-  )
+    merge = (u, ts) => u.copy(tweets = ts))
 
   def create(name: String): Long = createWithNamedValues(column.name -> name)
 

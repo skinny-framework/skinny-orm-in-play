@@ -5,7 +5,9 @@
 # Home page
 GET     /                      controllers.Twitter.index
 GET     /tweets                controllers.Twitter.showTimeline
++nocsrf
 POST    /tweets                controllers.Twitter.postTweet
++nocsrf
 DELETE  /tweets/:tweetId       controllers.Twitter.deleteTweet(tweetId: Long)
 GET     /users/:userId/tweets  controllers.Twitter.showUserTimeline(userId: Long)
 

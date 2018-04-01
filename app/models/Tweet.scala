@@ -9,8 +9,7 @@ case class Tweet(
   userId: Long,
   text: String,
   createdAt: DateTime,
-  user: Option[User] = None
-)
+  user: Option[User] = None)
 
 object Tweet extends SkinnyCRUDMapper[Tweet] {
   override lazy val defaultAlias = createAlias("tw")
@@ -23,8 +22,7 @@ object Tweet extends SkinnyCRUDMapper[Tweet] {
   def create(userId: Long, text: String): Long = {
     createWithNamedValues(
       column.userId -> userId,
-      column.text -> text
-    )
+      column.text -> text)
   }
 
   def findRecent(): Seq[Tweet] = {

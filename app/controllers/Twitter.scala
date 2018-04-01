@@ -29,9 +29,7 @@ class Twitter @Inject() (messages: MessagesApi) extends Controller with JsonRead
   private[this] lazy val tweetForm = Form(
     mapping(
       "userName" -> nonEmptyText(maxLength = 20),
-      "text" -> nonEmptyText
-    )(TweetForm.apply)(TweetForm.unapply)
-  )
+      "text" -> nonEmptyText)(TweetForm.apply)(TweetForm.unapply))
 
   def postTweet = Action { implicit req =>
     tweetForm.bindFromRequest.fold(
@@ -47,8 +45,7 @@ class Twitter @Inject() (messages: MessagesApi) extends Controller with JsonRead
             Tweet.create(userId, form.text)
         }
         Ok
-      }
-    )
+      })
   }
 
   def deleteTweet(tweetId: Long) = Action {
