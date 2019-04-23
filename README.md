@@ -3,10 +3,6 @@ How to use Skinny ORM in Play apps
 
 This is an example app to show you how to use Skinny ORM in Play apps.
 
-### Live Demo
-
-https://skinny-orm-in-play.herokuapp.com/
-
 ### Lightbend Activator Template
 
 Play Framework with Skinny ORM
